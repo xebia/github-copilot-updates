@@ -64,7 +64,7 @@
                 {
                   "id": 6,
                   "title": "Unit tests",
-                  "videoUrl": "",
+                  "videoUrl": "https://youtu.be/RDpAJAjXkqo",
                   "description": "Automate your testing process with Copilot's unit test generation.",
                   "ghes_support": true
                 },
@@ -169,7 +169,7 @@
                 {
                   "id": 29,
                   "title": "Ice Breakers",
-                  "videoUrl": "",
+                  "videoUrl": "https://youtu.be/ri8EG4-rM9A",
                   "description": "Generate starter templates or boilerplate code to jump-start development.",
                   "ghes_support": false
                 },
@@ -197,7 +197,7 @@
                 {
                   "id": 34,
                   "title": "Commit Message Custom Instructions",
-                  "videoUrl": "",
+                  "videoUrl": "https://youtu.be/eAh9qLmBgKg",
                   "description": "Customize commit messages with tailored instructions for more descriptive and meaningful comments.",
                   "ghes_support": false
                 },
