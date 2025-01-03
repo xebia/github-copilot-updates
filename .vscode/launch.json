@@ -10,8 +10,13 @@
                 "run",
                 "dev"
             ],
-            "port": 3000, // Default port for Vite development server
+            "port": 5173, // Default port for Vite development server
             "console": "integratedTerminal",
+            "serverReadyAction": {
+                "action": "debugWithEdge",
+                "pattern": "\\bhttp://localhost:5173\\b",
+
+            }
         }
     ]
 }
