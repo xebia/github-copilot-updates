@@ -149,8 +149,7 @@ const Index = () => {
         <div id="filter-buttons">
           <button className="filter-btn" onClick={unselectFiltersAndShowAll}>All ({totalItemCount})</button>
           {
-          feeds.filter(feed => !feed.cors)
-               .map(feed => (
+          feeds.map(feed => (
             <button
               key={feed.name}
               className="filter-btn"
