@@ -47,6 +47,8 @@ jobs:
           gh issue comment $ISSUE_NUMBER --body "$COMMENT"
           gh issue close $ISSUE_NUMBER --comment "$COMMENT"
           exit 1
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch URL title
         id: fetch-title
