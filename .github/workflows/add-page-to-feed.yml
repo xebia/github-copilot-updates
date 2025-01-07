@@ -78,3 +78,10 @@ jobs:
           git add public/data.json
           git commit -m "Add URL from issue #${{ github.event.issue.number }}"
           git push origin HEAD:${{ env.BRANCH_NAME }}
+      
+      - name: Comment on issue and close after successful addition
+        run: |
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          COMMENT="The URL was added to the list successfully. Another workflow will be triggered to deploy the changes."
+          gh issue comment $ISSUE_NUMBER --body "$COMMENT"
+          gh issue close $ISSUE_NUMBER --comment "$COMMENT"
