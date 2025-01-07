@@ -2,290 +2,289 @@
   "features": {
     "videos": [
       {
-              "sku": "GitHub Copilot Free / Pro",
-              "sku_id": 1,
-              "items": [
-                {
-                  "id": 0,
-                  "title": "Intro video for demos",
-                  "videoUrl": "https://youtu.be/AXP0bGCYrhM",
-                  "description": "Explainer of the demo repo we use in the videos.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 38,
-                  "title": "What is GitHub Copilot?",
-                  "videoUrl": "https://youtu.be/x0sBUlFHJrg",
-                  "description": "Rob explains on a high level what #GitHub #Copilot is and what you can expect. The different license types are explained and where you can find certain functionality.",
-                  "ghes_support": true	
-                },
-                {
-                  "id": 39,
-                  "title": "Getting started with GitHub Copilot Free",
-                  "videoUrl": "https://youtu.be/dMbOh114Vd4",
-                  "description": "To get started with GitHub Copilot Free you can go to https://gh.io/copilot and open the VS Code link from there. This will trigger your VS Code to install the Copilot extensions and ask you to get started with Copilot for free. This includes 2000 suggestions and 50 chat completions per month, for free.",
-                  "ghes_support": true	
-                },
-                {
-                  "id": 1,
-                  "title": "Code completions / suggestions",
-                  "videoUrl": "https://youtu.be/EPXdLelATrE",
-                  "description": "Enhance your coding experience with AI-powered code completions while you are typing. Also called 'suggestions'. These are the most common way of using Copilot as they show up as a suggestion while you are typing in your editor.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 2,
-                  "title": "Chat in IDE",
-                  "videoUrl": "https://youtu.be/TorMsn9bjLY",
-                  "description": "Communicate with Copilot directly within your IDE for instant assistance. You can have multi turn conversations with Copilot on things in your code, or ask it questions on things surrounding your code, like 'how do I do this in Python', or 'how do I run the unit tests from my terminal'.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 3,
-                  "title": "Chat on mobile",
-                  "videoUrl": "https://youtu.be/EQH-V5jQ0aA",
-                  "description": "Get coding assistance on-the-go with Copilot's mobile chat feature. This lets you summarize issues/pull requests/discussions, or ask broader questions about a repository for example.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 4,
-                  "title": "CLI assistance",
-                  "videoUrl": "https://youtu.be/Yhu2xzId2U0",
-                  "description": "Streamline your command line tasks with Copilot's CLI assistance.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 5,
-                  "title": "Code referencing",
-                  "videoUrl": "",
-                  "description": "Get reference information on code snippets that Copilot generates, if they match public code.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 6,
-                  "title": "Unit tests",
-                  "videoUrl": "https://youtu.be/RDpAJAjXkqo",
-                  "description": "Automate your testing process with Copilot's unit test generation.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 7,
-                  "title": "Code translation",
-                  "videoUrl": "https://youtu.be/UfQGauPcAgE",
-                  "description": "Translate code across different languages with ease using Copilot.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 8,
-                  "title": "Code documentation",
-                  "videoUrl": "https://youtu.be/66epMMY-YUc",
-                  "description": "Generate comprehensive documentation for your codebase with Copilot.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 9,
-                  "title": "Code explanation",
-                  "videoUrl": "https://youtu.be/1gyzoHTfxgQ",
-                  "description": "Get detailed explanations for complex code snippets with Copilot.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 10,
-                  "title": "Code fixing",
-                  "videoUrl": "",
-                  "description": "Quickly fix coding errors and issues with Copilot's assistance of '/fix'.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 11,
-                  "title": "Code debugging",
-                  "videoUrl": "",
-                  "description": "Simplify the debugging process with Copilot's insightful suggestions. Copilot can use the information of debugger, like the call stack, exceptions, variable values.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 12,
-                  "title": "Slash commands",
-                  "videoUrl": "",
-                  "description": "Enhance your coding workflow with Copilot's slash commands.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 20,
-                  "title": "User Instructions",
-                  "videoUrl": "https://youtu.be/IsEXdeTbi1I",
-                  "description": "With user instructions in VS Code you can help guide Copilot in the right direction for your codebase, like being a Python 3 developer and skip older language constructs.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 13,
-                  "title": "Integration in Web UI",
-                  "videoUrl": "",
-                  "description": "Seamlessly integrate Copilot into your web UI for enhanced productivity.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 15,
-                  "title": "PR body generation in WebUI",
-                  "videoUrl": "https://youtu.be/chD-UE4DmJk",
-                  "description": "Automatically generate detailed pull request bodies with Copilot in the webUI.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 14,
-                  "title": "Chat with your pull request",
-                  "videoUrl": "",
-                  "description": "Collaborate more effectively on pull requests with Copilot's chat feature.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 19,
-                  "title": "@github chat participant",
-                  "videoUrl": "https://youtu.be/M_BNfo01YsQ",
-                  "description": "Invite @github to your chat for additional assistance with GitHub information in the current repository.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 21,
-                  "title": "PR body generation in VS Code",
-                  "videoUrl": "https://youtu.be/_L8MdrswPV0",
-                  "description": "Create a body for a new pull request using GitHub Copilot, by using the GitHub PR extension! It will analyze the diff between the branches as well as the commit messages, and create a body from it.",
-                  "ghes_support": true
-                },
-                {
-                  "id": 27,
-                  "title": "Multi-Models",
-                  "videoUrl": "https://youtu.be/EzEH3wg6GaI",
-                  "description": "Leverage different AI models for various coding scenarios.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 28,
-                  "title": "Multi-file Edits",
-                  "videoUrl": "https://youtu.be/lI_5yc7zrDo",
-                  "description": "Copilot can make edits across multiple files in a single suggestion. This greatly improves the way of working by opening both your code as well as your tests for example, and update both at the same time.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 29,
-                  "title": "Ice Breakers",
-                  "videoUrl": "https://youtu.be/ri8EG4-rM9A",
-                  "description": "Generate starter templates or boilerplate code to jump-start development.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 30,
-                  "title": "Local In-Editor Code Reviews",
-                  "videoUrl": "https://youtu.be/t74rlukNevM",
-                  "description": "Highlight and review suggested code changes directly from within the Visual Studio editor.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 32,
-                  "title": "Playwright Test Generation",
-                  "videoUrl": "",
-                  "description": "Generate Playwright tests for UI testing scenarios directly from existing code.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 33,
-                  "title": "Commit Message Suggestions",
-                  "videoUrl": "https://youtu.be/fO31a_OS2EA",
-                  "description": "Copilot proposes commit messages based on the code changes in the current changeset.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 34,
-                  "title": "Commit Message Custom Instructions",
-                  "videoUrl": "https://youtu.be/eAh9qLmBgKg",
-                  "description": "Customize commit messages with tailored instructions for more descriptive and meaningful comments.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 17,
-                  "title": "Web search with Bing",
-                  "videoUrl": "",
-                  "description": "Perform web searches within your coding environment using Copilot and Bing.",
-                  "ghes_support": false
-                },
-                {
-                  
-                  "id": 36,
-                  "title": "Explain failed action jobs",
-                  "videoUrl": "",
-                  "description": "Get help from GitHub Copilot to explain why a certain action job failed and help you fixing it.",
-                  "ghes_support": false
-                }
-              ]
-            },
-            {
-              "sku": "GitHub Copilot Business",
-              "sku_id": 2,
-              "items": [
-                {
-                  "id": 23,
-                  "title": "Usage metrics",
-                  "videoUrl": "https://youtu.be/43yFNFT8-R4",
-                  "description": "Track your team's usage of Copilot with detailed metrics and insights.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 24,
-                  "title": "Data excluded from training by default",
-                  "videoUrl": "",
-                  "description": "From the business version and upwards, GitHub Copilot will not use your prompt and nteractions to train Copilot on.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 25,
-                  "title": "User management",
-                  "videoUrl": "",
-                  "description": "This lets you assign licenses per user, for example to every user in a team / organization / or repository.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 26,
-                  "title": "Content Exclusions",
-                  "videoUrl": "https://youtu.be/J2qaVAaQzY8",
-                  "description": "With Content Exclusions you can exclude certain parts of your codebase from being sent to Copilot. Think for example of files containing sensitive information, like secrets.",
-                  "ghes_support": false
-                }
-              ]
-            },
-            {
-              "sku": "GitHub Copilot Enterprise",
-              "sku_id": 3,
-              "items": [                
-                {
-                  "id": 16,
-                  "title": "Chat with knowledge bases",
-                  "videoUrl": "",
-                  "description": "Access knowledge bases directly through Copilot's chat for quick information retrieval.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 18,
-                  "title": "Fine tuned models",
-                  "videoUrl": "",
-                  "description": "Benefit from models fine-tuned for your specific coding needs with Copilot.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 37,
-                  "title": "Set coding guidelines for code review",
-                  "videoUrl": "",
-                  "description": "Define coding guidelines for Copilot to follow during code reviews.",
-                  "ghes_support": false
-                },
-                {
-                  "id": 22,
-                  "title": "Preview for Copilot Workspace",
-                  "videoUrl": "https://youtu.be/N64ozm3x88k",
-                  "description": "Technical Preview access to Copilot Workspace is available for Copilot Enterprise users. In this video Rob shows an early version of Workspace and how it lets you work in the context of an issue and the entire repository to get your task executed.",
-                  "ghes_support": false
-                }
-              ]
-            }
+        "sku": "GitHub Copilot Free / Pro",
+        "sku_id": 1,
+        "items": [
+          {
+            "id": 0,
+            "title": "Intro video for demos",
+            "videoUrl": "https://youtu.be/AXP0bGCYrhM",
+            "description": "Explainer of the demo repo we use in the videos.",
+            "ghes_support": true
+          },
+          {
+            "id": 38,
+            "title": "What is GitHub Copilot?",
+            "videoUrl": "https://youtu.be/x0sBUlFHJrg",
+            "description": "Rob explains on a high level what #GitHub #Copilot is and what you can expect. The different license types are explained and where you can find certain functionality.",
+            "ghes_support": true
+          },
+          {
+            "id": 39,
+            "title": "Getting started with GitHub Copilot Free",
+            "videoUrl": "https://youtu.be/dMbOh114Vd4",
+            "description": "To get started with GitHub Copilot Free you can go to https://gh.io/copilot and open the VS Code link from there. This will trigger your VS Code to install the Copilot extensions and ask you to get started with Copilot for free. This includes 2000 suggestions and 50 chat completions per month, for free.",
+            "ghes_support": true
+          },
+          {
+            "id": 1,
+            "title": "Code completions / suggestions",
+            "videoUrl": "https://youtu.be/EPXdLelATrE",
+            "description": "Enhance your coding experience with AI-powered code completions while you are typing. Also called 'suggestions'. These are the most common way of using Copilot as they show up as a suggestion while you are typing in your editor.",
+            "ghes_support": true
+          },
+          {
+            "id": 2,
+            "title": "Chat in IDE",
+            "videoUrl": "https://youtu.be/TorMsn9bjLY",
+            "description": "Communicate with Copilot directly within your IDE for instant assistance. You can have multi turn conversations with Copilot on things in your code, or ask it questions on things surrounding your code, like 'how do I do this in Python', or 'how do I run the unit tests from my terminal'.",
+            "ghes_support": true
+          },
+          {
+            "id": 3,
+            "title": "Chat on mobile",
+            "videoUrl": "https://youtu.be/EQH-V5jQ0aA",
+            "description": "Get coding assistance on-the-go with Copilot's mobile chat feature. This lets you summarize issues/pull requests/discussions, or ask broader questions about a repository for example.",
+            "ghes_support": true
+          },
+          {
+            "id": 4,
+            "title": "CLI assistance",
+            "videoUrl": "https://youtu.be/Yhu2xzId2U0",
+            "description": "Streamline your command line tasks with Copilot's CLI assistance.",
+            "ghes_support": true
+          },
+          {
+            "id": 5,
+            "title": "Code referencing",
+            "videoUrl": "",
+            "description": "Get reference information on code snippets that Copilot generates, if they match public code.",
+            "ghes_support": true
+          },
+          {
+            "id": 6,
+            "title": "Unit tests",
+            "videoUrl": "https://youtu.be/RDpAJAjXkqo",
+            "description": "Automate your testing process with Copilot's unit test generation.",
+            "ghes_support": true
+          },
+          {
+            "id": 7,
+            "title": "Code translation",
+            "videoUrl": "https://youtu.be/UfQGauPcAgE",
+            "description": "Translate code across different languages with ease using Copilot.",
+            "ghes_support": true
+          },
+          {
+            "id": 8,
+            "title": "Code documentation",
+            "videoUrl": "https://youtu.be/66epMMY-YUc",
+            "description": "Generate comprehensive documentation for your codebase with Copilot.",
+            "ghes_support": true
+          },
+          {
+            "id": 9,
+            "title": "Code explanation",
+            "videoUrl": "https://youtu.be/1gyzoHTfxgQ",
+            "description": "Get detailed explanations for complex code snippets with Copilot.",
+            "ghes_support": true
+          },
+          {
+            "id": 10,
+            "title": "Code fixing",
+            "videoUrl": "",
+            "description": "Quickly fix coding errors and issues with Copilot's assistance of '/fix'.",
+            "ghes_support": true
+          },
+          {
+            "id": 11,
+            "title": "Code debugging",
+            "videoUrl": "",
+            "description": "Simplify the debugging process with Copilot's insightful suggestions. Copilot can use the information of debugger, like the call stack, exceptions, variable values.",
+            "ghes_support": true
+          },
+          {
+            "id": 12,
+            "title": "Slash commands",
+            "videoUrl": "",
+            "description": "Enhance your coding workflow with Copilot's slash commands.",
+            "ghes_support": true
+          },
+          {
+            "id": 20,
+            "title": "User Instructions",
+            "videoUrl": "https://youtu.be/IsEXdeTbi1I",
+            "description": "With user instructions in VS Code you can help guide Copilot in the right direction for your codebase, like being a Python 3 developer and skip older language constructs.",
+            "ghes_support": true
+          },
+          {
+            "id": 13,
+            "title": "Integration in Web UI",
+            "videoUrl": "",
+            "description": "Seamlessly integrate Copilot into your web UI for enhanced productivity.",
+            "ghes_support": false
+          },
+          {
+            "id": 15,
+            "title": "PR body generation in WebUI",
+            "videoUrl": "https://youtu.be/chD-UE4DmJk",
+            "description": "Automatically generate detailed pull request bodies with Copilot in the webUI.",
+            "ghes_support": false
+          },
+          {
+            "id": 14,
+            "title": "Chat with your pull request",
+            "videoUrl": "",
+            "description": "Collaborate more effectively on pull requests with Copilot's chat feature.",
+            "ghes_support": false
+          },
+          {
+            "id": 19,
+            "title": "@github chat participant",
+            "videoUrl": "https://youtu.be/M_BNfo01YsQ",
+            "description": "Invite @github to your chat for additional assistance with GitHub information in the current repository.",
+            "ghes_support": false
+          },
+          {
+            "id": 21,
+            "title": "PR body generation in VS Code",
+            "videoUrl": "https://youtu.be/_L8MdrswPV0",
+            "description": "Create a body for a new pull request using GitHub Copilot, by using the GitHub PR extension! It will analyze the diff between the branches as well as the commit messages, and create a body from it.",
+            "ghes_support": true
+          },
+          {
+            "id": 27,
+            "title": "Multi-Models",
+            "videoUrl": "https://youtu.be/EzEH3wg6GaI",
+            "description": "Leverage different AI models for various coding scenarios.",
+            "ghes_support": false
+          },
+          {
+            "id": 28,
+            "title": "Multi-file Edits",
+            "videoUrl": "https://youtu.be/lI_5yc7zrDo",
+            "description": "Copilot can make edits across multiple files in a single suggestion. This greatly improves the way of working by opening both your code as well as your tests for example, and update both at the same time.",
+            "ghes_support": false
+          },
+          {
+            "id": 29,
+            "title": "Ice Breakers",
+            "videoUrl": "https://youtu.be/ri8EG4-rM9A",
+            "description": "Generate starter templates or boilerplate code to jump-start development.",
+            "ghes_support": false
+          },
+          {
+            "id": 30,
+            "title": "Local In-Editor Code Reviews",
+            "videoUrl": "https://youtu.be/t74rlukNevM",
+            "description": "Highlight and review suggested code changes directly from within the Visual Studio editor.",
+            "ghes_support": false
+          },
+          {
+            "id": 32,
+            "title": "Playwright Test Generation",
+            "videoUrl": "",
+            "description": "Generate Playwright tests for UI testing scenarios directly from existing code.",
+            "ghes_support": false
+          },
+          {
+            "id": 33,
+            "title": "Commit Message Suggestions",
+            "videoUrl": "https://youtu.be/fO31a_OS2EA",
+            "description": "Copilot proposes commit messages based on the code changes in the current changeset.",
+            "ghes_support": false
+          },
+          {
+            "id": 34,
+            "title": "Commit Message Custom Instructions",
+            "videoUrl": "https://youtu.be/eAh9qLmBgKg",
+            "description": "Customize commit messages with tailored instructions for more descriptive and meaningful comments.",
+            "ghes_support": false
+          },
+          {
+            "id": 17,
+            "title": "Web search with Bing",
+            "videoUrl": "",
+            "description": "Perform web searches within your coding environment using Copilot and Bing.",
+            "ghes_support": false
+          },
+          {
+            "id": 36,
+            "title": "Explain failed action jobs",
+            "videoUrl": "",
+            "description": "Get help from GitHub Copilot to explain why a certain action job failed and help you fixing it.",
+            "ghes_support": false
+          }
+        ]
+      },
+      {
+        "sku": "GitHub Copilot Business",
+        "sku_id": 2,
+        "items": [
+          {
+            "id": 23,
+            "title": "Usage metrics",
+            "videoUrl": "https://youtu.be/43yFNFT8-R4",
+            "description": "Track your team's usage of Copilot with detailed metrics and insights.",
+            "ghes_support": false
+          },
+          {
+            "id": 24,
+            "title": "Data excluded from training by default",
+            "videoUrl": "",
+            "description": "From the business version and upwards, GitHub Copilot will not use your prompt and nteractions to train Copilot on.",
+            "ghes_support": false
+          },
+          {
+            "id": 25,
+            "title": "User management",
+            "videoUrl": "",
+            "description": "This lets you assign licenses per user, for example to every user in a team / organization / or repository.",
+            "ghes_support": false
+          },
+          {
+            "id": 26,
+            "title": "Content Exclusions",
+            "videoUrl": "https://youtu.be/J2qaVAaQzY8",
+            "description": "With Content Exclusions you can exclude certain parts of your codebase from being sent to Copilot. Think for example of files containing sensitive information, like secrets.",
+            "ghes_support": false
+          }
+        ]
+      },
+      {
+        "sku": "GitHub Copilot Enterprise",
+        "sku_id": 3,
+        "items": [
+          {
+            "id": 16,
+            "title": "Chat with knowledge bases",
+            "videoUrl": "",
+            "description": "Access knowledge bases directly through Copilot's chat for quick information retrieval.",
+            "ghes_support": false
+          },
+          {
+            "id": 18,
+            "title": "Fine tuned models",
+            "videoUrl": "",
+            "description": "Benefit from models fine-tuned for your specific coding needs with Copilot.",
+            "ghes_support": false
+          },
+          {
+            "id": 37,
+            "title": "Set coding guidelines for code review",
+            "videoUrl": "",
+            "description": "Define coding guidelines for Copilot to follow during code reviews.",
+            "ghes_support": false
+          },
+          {
+            "id": 22,
+            "title": "Preview for Copilot Workspace",
+            "videoUrl": "https://youtu.be/N64ozm3x88k",
+            "description": "Technical Preview access to Copilot Workspace is available for Copilot Enterprise users. In this video Rob shows an early version of Workspace and how it lets you work in the context of an issue and the entire repository to get your task executed.",
+            "ghes_support": false
+          }
+        ]
+      }
     ]
   },
   "rssFeeds": {
@@ -319,6 +318,11 @@
       "url": "https://docs.github.com/en/github/developing-online-with-copilot",
       "title": "GitHub Copilot documentation",
       "date": "2022-06-01"
+    },
+    {
+      "url": "https://www.google.com",
+      "title": "Google",
+      "dateAdded": "2025-01-07T11:33:41Z"
     }
   ],
   "tutorials": [
