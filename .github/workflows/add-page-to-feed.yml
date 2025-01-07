@@ -52,7 +52,7 @@ jobs:
         id: fetch-title
         run: |
           URL=${{ env.URL }}
-          TITLE=$(curl -s $URL | grep -o '<title>[^<]*' | sed 's/<title>//')
+          TITLE=$(curl -s $URL | grep -o '<title>[^<]*' | sed 's/<title>//' | tr -d '\n')
           if [ -z "$TITLE" ]; then
             echo "Error: Unable to fetch title from URL."
             exit 1
