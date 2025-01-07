@@ -5,7 +5,8 @@ let cachedData = null;
 
 const getData = async () => {
     try {
-        const response = await fetch(`${basename}data.json`);
+        // Fetch the file hash without caching
+        const response = await fetch(`${basename}data.json`, { cache: 'no-store' });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -13,6 +14,7 @@ const getData = async () => {
         const hashSum = CryptoJS.SHA256(fileBuffer);
         const cacheBuster = hashSum.toString(CryptoJS.enc.Hex); // Generate a hash of the file
 
+        // Fetch the data with the cache buster
         const cacheBustedResponse = await fetch(`${basename}data.json?cacheBuster=${cacheBuster}`);
         if (!cacheBustedResponse.ok) {
             throw new Error('Network response was not ok');
