@@ -67,9 +67,9 @@ jobs:
 
       - name: Update data.json
         run: |
-          URL=${{ env.URL }}
-          TITLE=${{ env.TITLE }}
-          DATE=${{ env.DATE }}
+          URL='${{ env.URL }}'
+          TITLE='${{ env.TITLE }}'
+          DATE='${{ env.DATE }}'
           jq -c --arg url "$URL" --arg title "$TITLE" --arg date "$DATE" \
             '.manualUrls += [{"url": $url, "title": $title, "dateAdded": $date}]' public/data.json > tmp.json && mv tmp.json public/data.json
 
