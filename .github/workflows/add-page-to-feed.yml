@@ -1,0 +1,80 @@
+name: Add URL to data.json
+
+on:
+  issues:
+    types: [opened]
+
+env:
+  BRANCH_NAME: 32-add-support-to-add-extra-posts-to-a-newsfeed
+
+jobs:
+  add-url:
+    if: contains(github.event.issue.labels.*.name, 'add-url')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH_NAME }}
+
+      - name: Extract URL from issue body
+        id: extract-url
+        run: |
+          URL=$(echo "${{ github.event.issue.body }}" | grep -o 'http[s]*://[^ ]*')
+          if [ -z "$URL"; then
+            echo "Error: No URL found in the issue body."
+            exit 1
+          fi
+          echo "URL=$URL" >> $GITHUB_ENV
+
+      - name: Validate URL
+        id: validate-url
+        run: |
+          URL=${{ env.URL }}
+          if ! curl --output /dev/null --silent --head --fail "$URL"; then
+            echo "Error: Invalid URL."
+            exit 1
+          fi
+
+      - name: Comment on issue and close if validation fails
+        if: failure()
+        run: |
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          COMMENT="The URL was validated, but validation failed. The URL cannot be added to the list."
+          gh issue comment $ISSUE_NUMBER --body "$COMMENT"
+          gh issue close $ISSUE_NUMBER --comment "$COMMENT"
+          exit 1
+
+      - name: Fetch URL title
+        id: fetch-title
+        run: |
+          URL=${{ env.URL }}
+          TITLE=$(curl -s $URL | grep -o '<title>[^<]*' | sed 's/<title>//')
+          if [ -z "$TITLE"; then
+            echo "Error: Unable to fetch title from URL."
+            exit 1
+          fi
+          echo "TITLE=$TITLE" >> $GITHUB_ENV
+
+      - name: Get current date
+        id: get-date
+        run: |
+          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "DATE=$DATE" >> $GITHUB_ENV
+
+      - name: Update data.json
+        run: |
+          URL=${{ env.URL }}
+          TITLE=${{ env.TITLE }}
+          DATE=${{ env.DATE }}
+          jq --arg url "$URL" --arg title "$TITLE" --arg date "$DATE" \
+            '.manualUrls += [{"url": $url, "title": $title, "dateAdded": $date}]' data.json > tmp.json && mv tmp.json data.json
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data.json
+          git commit -m "Add URL from issue #${{ github.event.issue.number }}"
+          git push origin HEAD:${{ env.BRANCH_NAME }}

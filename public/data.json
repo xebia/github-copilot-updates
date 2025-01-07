@@ -314,6 +314,13 @@
       }
     ]
   },
+  "manualUrls": [
+    {
+      "url": "https://docs.github.com/en/github/developing-online-with-copilot",
+      "title": "GitHub Copilot documentation",
+      "date": "2022-06-01"
+    }
+  ],
   "tutorials": [
     {
       "title": "VS Code supports user input as extra prompt instructions",
