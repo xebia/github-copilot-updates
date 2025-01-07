@@ -21,7 +21,9 @@ jobs:
       - name: Extract URL from issue body
         id: extract-url
         run: |
+          echo "Issue body: ${{ github.event.issue.body }}"
           URL=$(echo "${{ github.event.issue.body }}" | grep -o 'http[s]*://[^ ]*')
+          echo "URL: $URL"
           if [ -z "$URL"; then
             echo "Error: No URL found in the issue body."
             exit 1
