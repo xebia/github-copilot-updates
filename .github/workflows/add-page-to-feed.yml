@@ -22,10 +22,10 @@ jobs:
         id: extract-url
         run: |
           echo "Issue body: ${{ github.event.issue.body }}"
-          URL=$(echo "${{ github.event.issue.body }}" | grep -o 'http[s]*://[^ ]*')
+          URL=$(echo "${{ github.event.issue.body }}" | grep -o 'http[s]*://[^ ]*' || true)
           echo "URL: $URL"
           if [ -z "$URL" ]; then
-            echo "Error: No URL found in the issue body."
+            echo "Error: No valid URL found in the issue body."
             exit 1
           fi
           echo "URL=$URL" >> $GITHUB_ENV
@@ -35,9 +35,10 @@ jobs:
         run: |
           URL=${{ env.URL }}
           if ! curl --output /dev/null --silent --head --fail "$URL"; then
-            echo "Error: Invalid URL."
+            echo "Error: URL cannot be loaded."
             exit 1
           fi
+          echo "URL successfully loaded"
 
       - name: Comment on issue and close if validation fails
         if: failure()
