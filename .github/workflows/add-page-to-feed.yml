@@ -25,8 +25,8 @@ jobs:
           URL=$(echo "${{ github.event.issue.body }}" | grep -o 'http[s]*://[^ ]*' || true)
           echo "URL: $URL"
           if [ -z "$URL" ]; then
-            ERROR_MESSAGE="Error: No valid URL found in the issue body."
-            echo $ERROR_MESSAGE
+            ERROR_MESSAGE="No valid URL found in the issue body."
+            echo "Error: $ERROR_MESSAGE"
             echo "ERROR_MESSAGE=$ERROR_MESSAGE" >> $GITHUB_ENV
             exit 1
           fi
@@ -37,8 +37,8 @@ jobs:
         run: |
           URL=${{ env.URL }}
           if ! curl --output /dev/null --silent --head --fail "$URL"; then
-            ERROR_MESSAGE="Error: Site ($URL) cannot be loaded."
-            echo $ERROR_MESSAGE
+            ERROR_MESSAGE="Site ($URL) cannot be loaded."
+            echo "Error: $ERROR_MESSAGE"
             echo "ERROR_MESSAGE=$ERROR_MESSAGE" >> $GITHUB_ENV
             exit 1
           fi
@@ -50,8 +50,8 @@ jobs:
           URL=${{ env.URL }}
           TITLE=$(curl -s $URL | grep -oP '(?<=<title>)(.*)(?=</title>)' | head -n 1)
           if [ -z "$TITLE" ]; then
-            ERROR_MESSAGE="Error: Unable to fetch title from URL."
-            echo $ERROR_MESSAGE
+            ERROR_MESSAGE="Unable to fetch title from URL."
+            echo "Error: $ERROR_MESSAGE"
             echo "ERROR_MESSAGE=$ERROR_MESSAGE" >> $GITHUB_ENV
             exit 1
           fi
