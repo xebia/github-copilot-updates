@@ -48,7 +48,7 @@ jobs:
         id: fetch-title
         run: |
           URL=${{ env.URL }}
-          TITLE=$(curl -s $URL | xmllint --html --xpath "//head/title/text()" - 2>/dev/null | tr -d '\n')
+          TITLE=$(curl -s $URL | grep -oP '(?<=<title>)(.*)(?=</title>)' | head -n 1)
           if [ -z "$TITLE" ]; then
             ERROR_MESSAGE="Error: Unable to fetch title from URL."
             echo $ERROR_MESSAGE
