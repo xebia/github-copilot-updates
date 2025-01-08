@@ -25,7 +25,9 @@ jobs:
           URL=$(echo "${{ github.event.issue.body }}" | grep -o 'http[s]*://[^ ]*' || true)
           echo "URL: $URL"
           if [ -z "$URL" ]; then
-            echo "Error: No valid URL found in the issue body."
+            ERROR_MESSAGE="Error: No valid URL found in the issue body."
+            echo $ERROR_MESSAGE
+            echo "ERROR_MESSAGE=$ERROR_MESSAGE" >> $GITHUB_ENV
             exit 1
           fi
           echo "URL=$URL" >> $GITHUB_ENV
@@ -35,21 +37,12 @@ jobs:
         run: |
           URL=${{ env.URL }}
           if ! curl --output /dev/null --silent --head --fail "$URL"; then
-            echo "Error: URL cannot be loaded."
+            ERROR_MESSAGE="Error: Site ($URL) cannot be loaded."
+            echo $ERROR_MESSAGE
+            echo "ERROR_MESSAGE=$ERROR_MESSAGE" >> $GITHUB_ENV
             exit 1
           fi
           echo "URL successfully loaded"
-
-      - name: Comment on issue and close if validation fails
-        if: failure()
-        run: |
-          ISSUE_NUMBER=${{ github.event.issue.number }}
-          COMMENT="The URL was validated, but validation failed. The URL cannot be added to the list."
-          gh issue comment $ISSUE_NUMBER --body "$COMMENT"
-          gh issue close $ISSUE_NUMBER --comment "$COMMENT"
-          exit 1
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch URL title
         id: fetch-title
@@ -57,10 +50,22 @@ jobs:
           URL=${{ env.URL }}
           TITLE=$(curl -s $URL | grep -o '<title>[^<]*' | sed 's/<title>//' | tr -d '\n')
           if [ -z "$TITLE" ]; then
-            echo "Error: Unable to fetch title from URL."
+            ERROR_MESSAGE="Error: Unable to fetch title from URL."
+            echo $ERROR_MESSAGE
+            echo "ERROR_MESSAGE=$ERROR_MESSAGE" >> $GITHUB_ENV
             exit 1
           fi
           echo "TITLE=$TITLE" >> $GITHUB_ENV
+
+      - name: Comment on issue and close if validation fails
+        if: failure()
+        run: |
+          ERROR_MESSAGE=${{ env.ERROR_MESSAGE }}
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          COMMENT="The addition of th URL is aborted due to the following error: $ERROR_MESSAGE"
+          gh issue close $ISSUE_NUMBER --comment "$COMMENT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get current date
         id: get-date
@@ -89,7 +94,6 @@ jobs:
         run: |
           ISSUE_NUMBER=${{ github.event.issue.number }}
           COMMENT="The URL was added to the list successfully. Another workflow will be triggered to deploy the changes."
-          gh issue comment $ISSUE_NUMBER --body "$COMMENT"
-          gh issue close $ISSUE_NUMBER
+          gh issue close $ISSUE_NUMBER --comment "$COMMENT"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
