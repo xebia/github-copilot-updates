@@ -313,18 +313,7 @@
       }
     ]
   },
-  "manualUrls": [
-    {
-      "url": "https://copilot.github.trust.page/",
-      "title": "Trust Center",
-      "dateAdded": "2025-01-08T15:51:12Z"
-    },
-    {
-      "url": "https://github.com",
-      "title": "GitHub · Build and ship software on a single, collaborative platform · GitHub",
-      "dateAdded": "2025-01-08T16:09:36Z"
-    }
-  ],
+  "manualUrls": [],
   "tutorials": [
     {
       "title": "VS Code supports user input as extra prompt instructions",
