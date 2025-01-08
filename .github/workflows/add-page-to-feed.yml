@@ -60,7 +60,7 @@ jobs:
       - name: Comment on issue and close if validation fails
         if: failure()
         run: |
-          ERROR_MESSAGE=${{ env.ERROR_MESSAGE }}
+          ERROR_MESSAGE="${{ env.ERROR_MESSAGE }}"
           ISSUE_NUMBER=${{ github.event.issue.number }}
           COMMENT="The addition of th URL is aborted due to the following error: $ERROR_MESSAGE"
           gh issue close $ISSUE_NUMBER --comment "$COMMENT"
