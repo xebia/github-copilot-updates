@@ -3,16 +3,14 @@ import basename from "../../react-config";
 let cachedData = null;
 
 const getData = async () => {
-    if (cachedData) {
-        return cachedData;
-    }
     try {
-        const response = await fetch(`${basename}data.json`);
+        // Fetch the file hash without caching
+        const response = await fetch(`${basename}data.json`, { cache: 'no-store' });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        cachedData = await response.json();
-        return cachedData;
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error('Fetch error:', error);
         throw error;
