@@ -1,5 +1,4 @@
 import basename from "../../react-config";
-import CryptoJS from 'crypto-js';
 
 let cachedData = null;
 
@@ -10,17 +9,8 @@ const getData = async () => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        const fileBuffer = await response.text(); // Read file as a string
-        const hashSum = CryptoJS.SHA256(fileBuffer);
-        const cacheBuster = hashSum.toString(CryptoJS.enc.Hex); // Generate a hash of the file
-
-        // Fetch the data with the cache buster
-        const cacheBustedResponse = await fetch(`${basename}data.json?cacheBuster=${cacheBuster}`);
-        if (!cacheBustedResponse.ok) {
-            throw new Error('Network response was not ok');
-        }
-        cachedData = await cacheBustedResponse.json();
-        return cachedData;
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error('Fetch error:', error);
         throw error;
