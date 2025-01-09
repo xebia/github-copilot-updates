@@ -10,8 +10,14 @@
                 "run",
                 "dev"
             ],
-            "port": 3000, // Default port for Vite development server
             "console": "integratedTerminal",
+            "env": {
+                "NO_COLOR": "1"
+            },
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bhttp://localhost:([0-9]+)\\b",
+            }
         }
     ]
 }

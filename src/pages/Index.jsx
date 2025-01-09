@@ -26,8 +26,8 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    const fetchRSSItems = async () => {;
-
+    const fetchRSSItems = async () => {
+      const proxyUrl = 'https://corsproxy.io/?url=';
       const counts = {};
       let totalItems = 0;
       const uniqueItems = new Map();
@@ -36,8 +36,7 @@ const Index = () => {
         try {
           let response;
           if (feed.cors) {
-            // Todo: Use a proxy to avoid CORS issues
-            continue;
+            response = await fetch(proxyUrl + encodeURIComponent(feed.url)).then(res => res.text());
           } else {
             response = await fetch(feed.url).then(res => res.text());
           }
@@ -67,7 +66,9 @@ const Index = () => {
         }
       }
 
-      uniqueItems.forEach((value, title) => {
+      const sortedItems = Array.from(uniqueItems.entries()).sort((a, b) => new Date(b[1].pubDate) - new Date(a[1].pubDate));
+
+      sortedItems.forEach(([title, value]) => {
         const newsItem = document.createElement('div');
         newsItem.className = 'news-item';
         newsItem.innerHTML = `
@@ -148,8 +149,7 @@ const Index = () => {
         <div id="filter-buttons">
           <button className="filter-btn" onClick={unselectFiltersAndShowAll}>All ({totalItemCount})</button>
           {
-          feeds.filter(feed => !feed.cors)
-               .map(feed => (
+          feeds.map(feed => (
             <button
               key={feed.name}
               className="filter-btn"
