@@ -111,8 +111,11 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           BRANCHNAME="${{ github.event.issue.number }}-add-url"
-          git branch $BRANCHNAME
-          git checkout -b $BRANCHNAME
+          if git show-ref --verify --quiet refs/heads/$BRANCHNAME; then
+            git checkout $BRANCHNAME
+          else
+            git checkout -b $BRANCHNAME
+          fi
           git add public/data.json
           git commit -m "Add URL from issue #${{ github.event.issue.number }}"
           git push origin HEAD:$BRANCHNAME
