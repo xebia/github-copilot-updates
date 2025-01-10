@@ -313,7 +313,13 @@
       }
     ]
   },
-  "manualUrls": [],
+  "manualUrls": [
+    {
+      "url": "https://www.xebia.com",
+      "title": "Xebia | Creating Digital Leaders.",
+      "dateAdded": "2025-01-10T15:52:44Z"
+    }
+  ],
   "tutorials": [
     {
       "title": "VS Code supports user input as extra prompt instructions",
