@@ -62,7 +62,7 @@ jobs:
         run: |
           ERROR_MESSAGE="${{ env.ERROR_MESSAGE }}"
           ISSUE_NUMBER=${{ github.event.issue.number }}
-          COMMENT="The addition of th URL is aborted due to the following error: $ERROR_MESSAGE"
+          COMMENT="The addition of the URL is aborted due to the following error: $ERROR_MESSAGE"
           gh issue close $ISSUE_NUMBER --comment "$COMMENT"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -73,6 +73,15 @@ jobs:
           DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           echo "DATE=$DATE" >> $GITHUB_ENV
 
+      - name: Check user permissions
+        id: check-permissions
+        run: |
+          PERMISSIONS=$(gh api -H "Accept: application/vnd.github.v3+json" /repos/${{ github.repository }}/collaborators/${{ github.event.issue.user.login }}/permission | jq -r .permission)
+          echo "User permissions: $PERMISSIONS"
+          echo "PERMISSIONS=$PERMISSIONS" >> $GITHUB_ENV
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Update data.json
         run: |
           URL='${{ env.URL }}'
@@ -81,19 +90,42 @@ jobs:
           jq --arg url "$URL" --arg title "$TITLE" --arg date "$DATE" \
             '.manualUrls += [{"url": $url, "title": $title, "dateAdded": $date}]' public/data.json > tmp.json && mv tmp.json public/data.json
 
-      - name: Commit changes
+      - name: Commit changes directly to main branch
+        if: env.PERMISSIONS == 'write' || env.PERMISSIONS == 'admin'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add public/data.json
           git commit -m "Add URL from issue #${{ github.event.issue.number }}"
+          git push origin main
+
+      - name: Create new branch and pull request
+        if: env.PERMISSIONS != 'write' && env.PERMISSIONS != 'admin'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -b ${{ env.BRANCH_NAME }}
+          git add public/data.json
+          git commit -m "Add URL from issue #${{ github.event.issue.number }}"
           git push origin HEAD:${{ env.BRANCH_NAME }}
-      
+          gh pr create --title "Add URL from issue #${{ github.event.issue.number }}" --body "This PR adds a URL from issue #${{ github.event.issue.number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Comment on issue and close after successful addition
-        if: success()
+        if: success() && (env.PERMISSIONS == 'write' || env.PERMISSIONS == 'admin')
         run: |
           ISSUE_NUMBER=${{ github.event.issue.number }}
-          COMMENT="The URL was added to the list successfully. Another workflow will be triggered to deploy the changes."
+          COMMENT="The URL was added to the list successfully."
           gh issue close $ISSUE_NUMBER --comment "$COMMENT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on issue after creating pull request
+        if: success() && (env.PERMISSIONS != 'write' && env.PERMISSIONS != 'admin')
+        run: |
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          COMMENT="A pull request was created to add the URL. Please review and merge the pull request."
+          gh issue comment $ISSUE_NUMBER --body "$COMMENT"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
