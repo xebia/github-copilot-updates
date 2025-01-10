@@ -313,13 +313,7 @@
       }
     ]
   },
-  "manualUrls": [
-    {
-      "url": "https://www.google.com",
-      "title": "Google",
-      "dateAdded": "2025-01-10T11:38:05Z"
-    }
-  ],
+  "manualUrls": [],
   "tutorials": [
     {
       "title": "VS Code supports user input as extra prompt instructions",
