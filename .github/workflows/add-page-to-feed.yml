@@ -46,16 +46,21 @@ jobs:
 
       - name: Fetch URL title
         id: fetch-title
+        shell: pwsh
         run: |
-          URL=${{ env.URL }}
-          TITLE=$(curl -s $URL | grep -oP '(?<=<title>)(.*)(?=</title>)' | head -n 1)
-          if [ -z "$TITLE" ]; then
-            ERROR_MESSAGE="Unable to fetch title from URL."
-            echo "Error: $ERROR_MESSAGE"
-            echo "ERROR_MESSAGE=$ERROR_MESSAGE" >> $GITHUB_ENV
+          $url = "${{ env.URL }}"
+          $response = Invoke-WebRequest -Uri $url
+          $html = $response.Content -replace "`n" -replace "`r"
+          if ($html -match "<head>.*<title.*?>(.*?)</title>.*</head>") {
+            $title = $matches[1]
+            echo "TITLE=$title" >> $env:GITHUB_ENV
+          } 
+          else {
+            $error_message = "Unable to fetch title from URL."
+            echo "Error: $error_message"
+            echo "ERROR_MESSAGE=$error_message" >> $env:GITHUB_ENV
             exit 1
-          fi
-          echo "TITLE=$TITLE" >> $GITHUB_ENV
+          }
 
       - name: Comment on issue and close if validation fails
         if: failure()
