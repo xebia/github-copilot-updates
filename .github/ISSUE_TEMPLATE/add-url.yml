@@ -11,5 +11,3 @@ body:
       label: URL
       description: The URL of the news article.
       placeholder: https://example.com/news/article
-      value: ""
-      required: true
