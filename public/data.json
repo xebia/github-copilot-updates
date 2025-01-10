@@ -313,18 +313,7 @@
       }
     ]
   },
-  "manualUrls": [
-    {
-      "url": "https://www.xebia.com",
-      "title": "Xebia | Creating Digital Leaders.",
-      "dateAdded": "2025-01-10T15:52:44Z"
-    },
-    {
-      "url": "https://www.microsoft.com",
-      "title": "Microsoft – AI, Cloud, Productivity, Computing, Gaming &amp; Apps",
-      "dateAdded": "2025-01-10T16:22:56Z"
-    }
-  ],
+  "manualUrls": [],
   "tutorials": [
     {
       "title": "VS Code supports user input as extra prompt instructions",
