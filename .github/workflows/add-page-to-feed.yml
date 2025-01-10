@@ -97,7 +97,7 @@ jobs:
             '.manualUrls += [{"url": $url, "title": $title, "dateAdded": $date}]' public/data.json > tmp.json && mv tmp.json public/data.json
 
       - name: Commit changes directly to main branch
-        if: env.PERMISSIONS == 'write' || env.PERMISSIONS == 'admin'
+        if: env.PERMISSIONS == 'write' || env.PERMISSIONS == 'admin' || env.Permission == 'maintain'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -106,7 +106,7 @@ jobs:
           git push origin ${{ env.BRANCH_NAME }}
 
       - name: Create new branch and pull request
-        if: env.PERMISSIONS != 'write' && env.PERMISSIONS != 'admin'
+        if: env.PERMISSIONS != 'write' && env.PERMISSIONS != 'admin' && env.Permission != 'maintain'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -124,7 +124,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment on issue and close after successful addition
-        if: success() && (env.PERMISSIONS == 'write' || env.PERMISSIONS == 'admin')
+        if: success() && (env.PERMISSIONS == 'write' || env.PERMISSIONS == 'admin' || env.Permission == 'maintain')
         run: |
           ISSUE_NUMBER=${{ github.event.issue.number }}
           COMMENT="The URL was added to the list successfully."
@@ -133,7 +133,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment on issue after creating pull request
-        if: success() && (env.PERMISSIONS != 'write' && env.PERMISSIONS != 'admin')
+        if: success() && (env.PERMISSIONS != 'write' && env.PERMISSIONS != 'admin' && env.Permission != 'maintain')
         run: |
           ISSUE_NUMBER=${{ github.event.issue.number }}
           COMMENT="A pull request was created to add the URL. Please review and merge the pull request."
