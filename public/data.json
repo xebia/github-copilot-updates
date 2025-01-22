@@ -316,6 +316,11 @@
   },
   "tutorials": [
     {
+      "title": "Troubleshooting GitHub Copilot keyboard shortcuts in Jetbrains IDEs",
+      "description": "Jesse shows how you can troubleshoot keyboard issues in Jetbrains IDE's when your GitHub Copilot tools don't work the way you're expecting",
+      "url": "https://jessehouwing.net/troubleshooting-github-copilot-keyboard-shortcuts-in-jetbrains-ides/"
+    },
+    {
       "title": "VS Code supports user input as extra prompt instructions",
       "description": "Instruct GitHub Copilot with extra user input to get more fitting results. This is especially helpful if you have a specific need for a libary, or SDK version.",
       "url": "https://molson504x.github.io/GitHub-Copilot-Custom-Instructions"
