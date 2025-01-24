@@ -17,6 +17,7 @@ const Index = () => {
         const response = await fetch('data.json');
         const data = await response.json();
         setFeeds(data.rssFeeds.feeds);
+        mergeManualUrls(data.manualUrls);
       } catch (error) {
         console.error('Error loading the data:', error);
       }
@@ -25,69 +26,99 @@ const Index = () => {
     fetchFeeds();
   }, []);
 
-  useEffect(() => {
-    const fetchRSSItems = async () => {
-      const proxyUrl = 'https://corsproxy.io/?url=';
-      const counts = {};
-      let totalItems = 0;
-      const uniqueItems = new Map();
-
-      for (const feed of feeds) {
-        try {
-          let response;
-          if (feed.cors) {
-            response = await fetch(proxyUrl + encodeURIComponent(feed.url)).then(res => res.text());
-          } else {
-            response = await fetch(feed.url).then(res => res.text());
-          }
-          const data = new window.DOMParser().parseFromString(response, "text/xml");
-          const items = data.querySelectorAll("item");
-          counts[feed.name] = items.length;
-          totalItems += items.length;
-
-          items.forEach(item => {
-            const title = item.querySelector("title").textContent;
-            const description = item.querySelector("description").textContent;
-            const pubDate = new Date(item.querySelector("pubDate").textContent);
-            const formattedDate = pubDate.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
-
-            if (uniqueItems.has(title)) {
-              uniqueItems.get(title).feeds.push(feed.name);
-            } else {
-              uniqueItems.set(title, {
-                description,
-                pubDate: formattedDate,
-                feeds: [feed.name]
-              });
-            }
-          });
-        } catch (error) {
-          console.error(`Error fetching feed ${feed.name}:`, error);
-        }
-      }
-
-      const sortedItems = Array.from(uniqueItems.entries()).sort((a, b) => new Date(b[1].pubDate) - new Date(a[1].pubDate));
-
-      sortedItems.forEach(([title, value]) => {
-        const newsItem = document.createElement('div');
-        newsItem.className = 'news-item';
-        newsItem.innerHTML = `
-          <h4>${title}</h4>
-          <p>${value.description}</p>
-          ${value.feeds.map(feed => `<span>${feed}</span>`).join('')}
-          <span class="date">Published: ${value.pubDate}</span>
-        `;
-        document.getElementById('news-content').appendChild(newsItem);
+  const mergeManualUrls = (manualUrls) => {
+    const uniqueItems = new Map();
+  
+    manualUrls.forEach(manualUrl => {
+      uniqueItems.set(manualUrl.title, {
+        title: manualUrl.title,
+        description: `<a href="${manualUrl.url}" target="_blank">${manualUrl.url}</a>`,
+        pubDate: new Date(manualUrl.dateAdded).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }),
+        feeds: ['Other']
       });
+    });
+  
+    setUniqueItems(prevItems => {
+      const mergedItems = new Map(prevItems);
+      uniqueItems.forEach((value, key) => {
+        mergedItems.set(key, value);
+      });
+      return mergedItems;
+    });
+  
+    setFeedCounts(prevCounts => ({
+      ...prevCounts,
+      Other: manualUrls.length
+    }));
+  };
 
-      setFeedCounts(counts);
-      setTotalItemCount(totalItems);
-    };
+  const fetchRSSItems = async () => {
+  	const proxyUrl = 'https://corsproxy.io/?url=';
+    const counts = { Other: feedCounts.Other || 0 }; // Initialize with manualUrls count
+    let totalItems = counts.Other; // Start with manualUrls count
+    const uniqueItems = new Map();
+  
+    for (const feed of feeds) {
+      try {
+        let response;
+        if (feed.cors) {
+          response = await fetch(proxyUrl + encodeURIComponent(feed.url)).then(res => res.text());
+        } else {
+          response = await fetch(feed.url).then(res => res.text());
+        }
+        const data = new window.DOMParser().parseFromString(response, "text/xml");
+        const items = data.querySelectorAll("item");
+        counts[feed.name] = items.length;
+        totalItems += items.length;
+  
+        items.forEach(item => {
+          const title = item.querySelector("title").textContent;
+          const description = item.querySelector("description").textContent;
+          const pubDate = new Date(item.querySelector("pubDate").textContent);
+          const formattedDate = pubDate.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
+  
+          if (uniqueItems.has(title)) {
+            uniqueItems.get(title).feeds.push(feed.name);
+          } else {
+            uniqueItems.set(title, {
+              description,
+              pubDate: formattedDate,
+              feeds: [feed.name]
+            });
+          }
+        });
+      } catch (error) {
+        console.error(`Error fetching feed ${feed.name}:`, error);
+      }
+    }
+  
+    setFeedCounts(counts);
+    setTotalItemCount(totalItems);
+    setUniqueItems(uniqueItems);
+  };
 
+  useEffect(() => {
     if (feeds.length > 0) {
       fetchRSSItems();
     }
   }, [feeds]);
+
+  const [uniqueItems, setUniqueItems] = useState(new Map());
+
+  useEffect(() => {
+    const sortedItems = Array.from(uniqueItems.entries()).sort((a, b) => new Date(b[1].pubDate) - new Date(a[1].pubDate));
+    sortedItems.forEach(([title, value]) => {
+      const newsItem = document.createElement('div');
+      newsItem.className = 'news-item';
+      newsItem.innerHTML = `
+        <h4>${title}</h4>
+        <p>${value.description}</p>
+        ${value.feeds.map(feed => `<span>${feed}</span>`).join('')}
+        <span class="date">Published: ${value.pubDate}</span>
+      `;
+      document.getElementById('news-content').appendChild(newsItem);
+    });
+  }, [uniqueItems]);
 
   const unselectFiltersAndShowAll = () => {
     document.querySelectorAll('.news-item').forEach(item => {
@@ -109,10 +140,18 @@ const Index = () => {
       });
     } else {
       newsItems.forEach(item => {
-        if (item.querySelector('span').textContent === feedName) {
-          item.style.display = '';
+        if (feedName === 'Other') {
+          if (item.querySelector('span').textContent === 'Other') {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
         } else {
-          item.style.display = 'none';
+          if (item.querySelector('span').textContent === feedName) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
         }
       });
     }
@@ -149,29 +188,35 @@ const Index = () => {
         <div id="filter-buttons">
           <button className="filter-btn" onClick={unselectFiltersAndShowAll}>All ({totalItemCount})</button>
           {
-          feeds.map(feed => (
-            <button
-              key={feed.name}
-              className="filter-btn"
-              data-feed-name={feed.name}
-              onClick={(e) => filterNews(feed.name, e.target)}
-            >
-              {feed.name} ({feedCounts[feed.name] || 0})
-            </button>
-          ))}
+            feeds.map(feed => (
+              <button
+                key={feed.name}
+                className="filter-btn"
+                data-feed-name={feed.name}
+                onClick={(e) => filterNews(feed.name, e.target)}
+              >
+                {feed.name} ({feedCounts[feed.name] || 0})
+              </button>
+            ))
+          }
+          <button
+            className="filter-btn"
+            data-feed-name="Other"
+            onClick={(e) => filterNews('Other', e.target)}
+          >
+            Other ({feedCounts.Other || 0})
+          </button>
         </div>
 
         <div id="news-content"></div>
       </div>
 
       <div className="footer">
-                
         <div>Build: {buildNumber}</div>
         <div>NODE_ENV: {REACT_APP_NODE_ENV}</div>
       </div>
     </div>
   );
 };
-
 
 export default Index;

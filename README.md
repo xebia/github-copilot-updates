@@ -15,3 +15,7 @@ To run the application in a GitHub Codespace, simply open the repository in a Co
 ## Navigating the Video Game Landscape
 
 The "Copilot Levels of Enlightenment" feature introduces an interactive SNES style video game landscape, complete with a leathery pilot jacket theme. Users can navigate through various levels by clicking on them, which will display inline videos and descriptions related to GitHub Copilot features and tutorials. This immersive experience is designed to make learning about GitHub Copilot both engaging and informative.
+
+## Adding URLs to the newsfeed
+
+It is possible to add a single URL to the newsfeed by using the issue form. Simply click on the "Issues" tab and create a new issue with the URL you would like to add. The issue will be automatically closed and the URL will be added to the newsfeed, if you have write rights on this repository.

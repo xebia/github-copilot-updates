@@ -1,0 +1,142 @@
+name: Add URL to data.json
+
+on:
+  issues:
+    types: [opened]
+
+env:
+  BRANCH_NAME: 32-add-support-to-add-extra-posts-to-a-newsfeed
+
+jobs:
+  add-url:
+    if: contains(github.event.issue.labels.*.name, 'add-url')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH_NAME }}
+
+      - name: Extract URL from issue body
+        id: extract-url
+        run: |
+          echo "Issue body: ${{ github.event.issue.body }}"
+          URL=$(echo "${{ github.event.issue.body }}" | grep -o 'http[s]*://[^ ]*' || true)
+          echo "URL: $URL"
+          if [ -z "$URL" ]; then
+            ERROR_MESSAGE="No valid URL found in the issue body."
+            echo "Error: $ERROR_MESSAGE"
+            echo "ERROR_MESSAGE=$ERROR_MESSAGE" >> $GITHUB_ENV
+            exit 1
+          fi
+          echo "URL=$URL" >> $GITHUB_ENV
+
+      - name: Validate URL
+        id: validate-url
+        run: |
+          URL=${{ env.URL }}
+          if ! curl --output /dev/null --silent --head --fail "$URL"; then
+            ERROR_MESSAGE="Site ($URL) cannot be loaded."
+            echo "Error: $ERROR_MESSAGE"
+            echo "ERROR_MESSAGE=$ERROR_MESSAGE" >> $GITHUB_ENV
+            exit 1
+          fi
+          echo "URL successfully loaded"
+
+      - name: Fetch URL title
+        id: fetch-title
+        shell: pwsh
+        run: |
+          $url = "${{ env.URL }}"
+          $response = Invoke-WebRequest -Uri $url
+          $html = $response.Content -replace "`n" -replace "`r"
+          if ($html -match "<head>.*<title.*?>(.*?)</title>.*</head>") {
+            $title = $matches[1]
+            Write-Host "Title: $title"
+            echo "TITLE=$title" >> $env:GITHUB_ENV
+          } 
+          else {
+            $error_message = "Unable to fetch title from URL."
+            echo "Error: $error_message"
+            echo "ERROR_MESSAGE=$error_message" >> $env:GITHUB_ENV
+            exit 1
+          }
+
+      - name: Comment on issue and close if validation fails
+        if: failure()
+        run: |
+          ERROR_MESSAGE="${{ env.ERROR_MESSAGE }}"
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          COMMENT="The addition of the URL is aborted due to the following error: $ERROR_MESSAGE"
+          gh issue close $ISSUE_NUMBER --comment "$COMMENT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get current date
+        id: get-date
+        run: |
+          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "DATE=$DATE" >> $GITHUB_ENV
+
+      - name: Check user permissions
+        id: check-permissions
+        run: |
+          PERMISSIONS=$(gh api -H "Accept: application/vnd.github.v3+json" /repos/${{ github.repository }}/collaborators/${{ github.event.issue.user.login }}/permission | jq -r .permission)
+          echo "User permissions: $PERMISSIONS"
+          echo "PERMISSIONS=$PERMISSIONS" >> $GITHUB_ENV
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update data.json
+        run: |
+          URL='${{ env.URL }}'
+          TITLE='${{ env.TITLE }}'
+          DATE='${{ env.DATE }}'
+          jq --arg url "$URL" --arg title "$TITLE" --arg date "$DATE" \
+            '.manualUrls += [{"url": $url, "title": $title, "dateAdded": $date}]' public/data.json > tmp.json && mv tmp.json public/data.json
+
+      - name: Commit changes directly to main branch
+        if: env.PERMISSIONS == 'write' || env.PERMISSIONS == 'admin' || env.Permission == 'maintain'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add public/data.json
+          git commit -m "Add URL from issue #${{ github.event.issue.number }}"
+          git push origin ${{ env.BRANCH_NAME }}
+
+      - name: Create new branch and pull request
+        if: env.PERMISSIONS != 'write' && env.PERMISSIONS != 'admin' && env.Permission != 'maintain'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          BRANCHNAME="${{ github.event.issue.number }}-add-url"
+          if git show-ref --verify --quiet refs/heads/$BRANCHNAME; then
+            git checkout $BRANCHNAME
+          else
+            git checkout -b $BRANCHNAME
+          fi
+          git add public/data.json
+          git commit -m "Add URL from issue #${{ github.event.issue.number }}"
+          git push origin HEAD:$BRANCHNAME
+          gh pr create --title "Add URL from issue #${{ github.event.issue.number }}" --body "This PR adds a URL from issue #${{ github.event.issue.number }}" --head $BRANCHNAME
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on issue and close after successful addition
+        if: success() && (env.PERMISSIONS == 'write' || env.PERMISSIONS == 'admin' || env.Permission == 'maintain')
+        run: |
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          COMMENT="The URL was added to the list successfully."
+          gh issue close $ISSUE_NUMBER --comment "$COMMENT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on issue after creating pull request
+        if: success() && (env.PERMISSIONS != 'write' && env.PERMISSIONS != 'admin' && env.Permission != 'maintain')
+        run: |
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          COMMENT="A pull request was created to add the URL. Please review and merge the pull request."
+          gh issue comment $ISSUE_NUMBER --body "$COMMENT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
