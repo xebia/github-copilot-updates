@@ -18,4 +18,4 @@ The "Copilot Levels of Enlightenment" feature introduces an interactive SNES sty
 
 ## Adding URLs to the newsfeed
 
-It is possible to add a single URL to the newsfeed by using the issue form. Simply click on the "Issues" tab and create a new issue with the URL you would like to add. The issue will be automatically closed and the URL will be added to the newsfeed.
+It is possible to add a single URL to the newsfeed by using the issue form. Simply click on the "Issues" tab and create a new issue with the URL you would like to add. The issue will be automatically closed and the URL will be added to the newsfeed, if you have write rights on this repository.
