@@ -5,7 +5,7 @@
 }
 
 .poweredBy {
-    width:100%;
+    width: 100%;
     max-width: 200px;
 }
 
@@ -49,7 +49,7 @@
     padding: 20px;
 }
 
-.sku-grid > div {
+.sku-grid>div {
     justify-content: center;
     align-items: center;
     gap: 20px;
@@ -86,7 +86,7 @@
     align-items: center;
 }
 
-.box-grid > div {
+.box-grid>div {
     justify-content: center;
     align-items: center;
     gap: 20px;
@@ -104,7 +104,7 @@
     align-items: center;
 }
 
-.feature-grid > div {
+.feature-grid>div {
     justify-content: center;
     align-items: center;
     gap: 20px;
@@ -133,7 +133,7 @@
 }
 
 body {
-    background: radial-gradient(circle, rgba(34,34,59,1) 0%, rgba(14,14,44,1) 35%, black 100%);
+    background: radial-gradient(circle, rgba(34, 34, 59, 1) 0%, rgba(14, 14, 44, 1) 35%, black 100%);
     color: white;
     max-width: 1400px;
     font-family: 'Roboto', sans-serif;
@@ -186,6 +186,7 @@ a {
         gap: 20px;
         padding: 10px;
     }
+
     .feature-grid {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -220,8 +221,10 @@ a {
 }
 
 .news-item {
-    flex: 1 1 100%; /* Adjust the width as needed */
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    flex: 1 1 100%;
+    /* Adjust the width as needed */
+    box-sizing: border-box;
+    /* Ensure padding and border are included in the width */
     max-width: 600px;
     margin: 10px;
     padding: 15px;
@@ -457,8 +460,12 @@ h1 {
 
 .video-box .play {
     position: absolute;
-    bottom: 29px;
-    left: 36%;
+    bottom: 10px;
+    /* Adjusted from 29px to 10px */
+    left: 50%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    /* Center horizontally */
     height: 30px;
     width: 30px;
     background-repeat: no-repeat;
@@ -484,6 +491,7 @@ h1 {
     #game-container {
         flex-direction: column;
     }
+
     #game-canvas {
         width: 100%;
         height: auto;
