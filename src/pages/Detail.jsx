@@ -39,7 +39,7 @@ const Detail = () => {
 
   return (
     <div id="feature-detail-container" style={{ textAlign: 'center' }}>
-      <button onClick={() => navigate(-1)} style={{ display: 'inline-block', marginBottom: '20px' }}>Back</button>
+      <button className='back-button' onClick={() => navigate(-1)} style={{ display: 'inline-block', marginBottom: '20px' }}>Back</button>
       <h1 id="feature-title">{videoDetails.title}</h1>
       <div id="video-container">
         {videoDetails.videoUrl ? (
