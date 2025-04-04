@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import '../styles.css';
 import getData from '../utils/getData';
 
@@ -8,7 +8,7 @@ const useQuery = () => {
 };
 
 const Detail = () => {
-//  const { videoId } = useParams();
+  const navigate = useNavigate();
   const [videoDetails, setVideoDetails] = useState(null);
 
   const query = useQuery();
@@ -39,9 +39,9 @@ const Detail = () => {
 
   return (
     <div id="feature-detail-container" style={{ textAlign: 'center' }}>
-      <a href="javascript:history.back()" style={{ display: 'inline-block', marginBottom: '20px' }}>Back</a>
+      <button className='back-button' onClick={() => navigate(-1)} style={{ display: 'inline-block', marginBottom: '20px' }}>Back</button>
       <h1 id="feature-title">{videoDetails.title}</h1>
-           <div id="video-container">
+      <div id="video-container">
         {videoDetails.videoUrl ? (
           <iframe
             id="feature-video"
