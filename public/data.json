@@ -222,7 +222,7 @@
                   "title": "Fetch webpage",
                   "videoUrl": "https://youtu.be/UuIrbI-qX-0",
                   "description": "Retrieve a web page as part of the context you provide with your prompt.",
-                  "ghes_support": false
+                  "ghes_support": true
                 }
               ]
             },
