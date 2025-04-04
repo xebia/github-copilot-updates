@@ -215,6 +215,14 @@
                   "videoUrl": "",
                   "description": "Get help from GitHub Copilot to explain why a certain action job failed and help you fixing it.",
                   "ghes_support": false
+                },
+                {
+                  
+                  "id": 40,
+                  "title": "Fetch webpage",
+                  "videoUrl": "https://youtu.be/UuIrbI-qX-0",
+                  "description": "Retrieve a web page as part of the context you provide with your prompt.",
+                  "ghes_support": true
                 }
               ]
             },
