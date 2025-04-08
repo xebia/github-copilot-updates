@@ -2,7 +2,7 @@
   "features": {
     "videos": [
       {
-              "sku": "GitHub Copilot Free / Pro",
+              "sku": "Free / Pro",
               "sku_id": 1,
               "items": [
                 {
@@ -227,7 +227,7 @@
               ]
             },
             {
-              "sku": "GitHub Copilot Business",
+              "sku": "Business / Pro+",
               "sku_id": 2,
               "items": [
                 {
@@ -261,7 +261,7 @@
               ]
             },
             {
-              "sku": "GitHub Copilot Enterprise",
+              "sku": "Enterprise",
               "sku_id": 3,
               "items": [                
                 {

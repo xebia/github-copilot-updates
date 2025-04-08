@@ -138,7 +138,7 @@ const Index = () => {
             <Link to="/tutorials">Tutorials</Link>
           </div>
           <div className="box">
-            <img src="copilot.jfif" alt="Logo of a pilot with a headset and a leather jacket" style={{ width: '100px', height: 'auto' }} />
+            <img src="GitHubCopilot.svg" alt="GitHub Copilot Logo" style={{ width: '100px', height: 'auto' }} />
             <PoweredBy />
           </div>
         </div>

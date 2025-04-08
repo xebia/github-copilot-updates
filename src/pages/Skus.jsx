@@ -93,7 +93,7 @@ const Skus = () => {
       <div id="main-container">
       <div>
           <div>
-            <h2>GitHub Copilot Free / Pro</h2>
+            <h2>Free | Pro</h2>
           </div>
           <div id="individual-features" className="sku-grid individual">
           {
@@ -114,7 +114,7 @@ const Skus = () => {
         </div>
         <div>
           <div>
-            <h2>GitHub Copilot Business</h2>
+            <h2>Business | Pro+</h2>
           </div>
           <div id="business-features" className="sku-grid business">
           {
@@ -135,7 +135,7 @@ const Skus = () => {
         </div>
         <div>
           <div>
-            <h2>GitHub Copilot Enterprise</h2>
+            <h2>Enterprise</h2>
           </div>
           <div id="enterprise-features" className="sku-grid enterprise">
           {features.enterprise.map(item => (

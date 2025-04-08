@@ -26,6 +26,7 @@
 .back-button {
     padding: 10px 20px;
     margin-bottom: 20px;
+    margin-right: 70px;
     color: white;
     background-color: var(--button-color);
     border-radius: 5px;
@@ -504,7 +505,6 @@ h1 {
 
 .titleHeader a {
     display: inline-block;
-    margin-right: 7px;
 }
 
 .titleHeader div {
