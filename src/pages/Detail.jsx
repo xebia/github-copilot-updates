@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import '../styles.css';
 import getData from '../utils/getData';
+import Header from './title-header';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -40,7 +41,8 @@ const Detail = () => {
   return (
     <div id="feature-detail-container" style={{ textAlign: 'center' }}>
       <button className='back-button' onClick={() => navigate(-1)} style={{ display: 'inline-block', marginBottom: '20px' }}>Back</button>
-      <h1 id="feature-title">{videoDetails.title}</h1>
+
+      <Header title={videoDetails.title} showBackButton={false} />
       <div id="video-container">
         {videoDetails.videoUrl ? (
           <iframe
