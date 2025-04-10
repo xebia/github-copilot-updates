@@ -239,6 +239,14 @@
                   "videoUrl": "https://youtu.be/OZKC2c9wD1Q",
                   "description": "NES Looks ahead for you while editing and comes up with related changes.",
                   "ghes_support": true
+                },
+                {
+                  
+                  "id": 43,
+                  "title": "Premium requests",
+                  "videoUrl": "https://youtu.be/z2_oa8nEw14",
+                  "description": "What are GitHub Copilot Premium Requests and do their rate limits work?",
+                  "ghes_support": true
                 }
               ]
             },
