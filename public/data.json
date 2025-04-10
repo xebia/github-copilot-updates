@@ -223,6 +223,22 @@
                   "videoUrl": "https://youtu.be/UuIrbI-qX-0",
                   "description": "Retrieve a web page as part of the context you provide with your prompt.",
                   "ghes_support": true
+                },
+                {
+                  
+                  "id": 41,
+                  "title": "GPT-4o Copilot suggestions model",
+                  "videoUrl": "https://youtu.be/zZI34xmoWbw",
+                  "description": "GPT-4o Copilot replaces the previously used GPT 3.5 TURBO model for suggestions.",
+                  "ghes_support": true
+                },
+                {
+                  
+                  "id": 42,
+                  "title": "Next Edit Suggestions",
+                  "videoUrl": "https://youtu.be/OZKC2c9wD1Q",
+                  "description": "NES Looks ahead for you while editing and comes up with related changes.",
+                  "ghes_support": true
                 }
               ]
             },
