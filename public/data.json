@@ -247,6 +247,14 @@
                   "videoUrl": "https://youtu.be/z2_oa8nEw14",
                   "description": "What are GitHub Copilot Premium Requests and do their rate limits work? These chances will be in effect during the month of May. Read more info of the enforcements in the documentation: <a href=\"https://docs.github.com/en/copilot/managing-copilot/monitoring-usage-and-entitlements/about-premium-requests\">about premium requests</a>.",
                   "ghes_support": true
+                },
+                {
+                  
+                  "id": 44,
+                  "title": "Agent Mode",
+                  "videoUrl": "https://youtu.be/JtJ3_ATBsTY",
+                  "description": "How Agent Mode helps you by iterating over your prompt by itself.",
+                  "ghes_support": true
                 }
               ]
             },
