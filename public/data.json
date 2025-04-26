@@ -255,6 +255,14 @@
                   "videoUrl": "https://youtu.be/JtJ3_ATBsTY",
                   "description": "How Agent Mode helps you by iterating over your prompt by itself.",
                   "ghes_support": true
+                },
+                {
+                  
+                  "id": 45,
+                  "title": "MCP with Azure and GitHub",
+                  "videoUrl": "https://youtu.be/m6XBVRXfFN8",
+                  "description": "Empower Agent Mode with extra context and capabilities by supercharging it with MCP servers. See how you can bring in extra information from Azure resources to add extra information to creating GitHub issues",
+                  "ghes_support": true
                 }
               ]
             },
