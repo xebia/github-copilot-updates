@@ -263,6 +263,13 @@
                   "videoUrl": "https://youtu.be/m6XBVRXfFN8",
                   "description": "Empower Agent Mode with extra context and capabilities by supercharging it with MCP servers. See how you can bring in extra information from Azure resources to add extra information to creating GitHub issues",
                   "ghes_support": true
+                },
+                {
+                  "id": 46,
+                  "title": "Bring you own LLM",
+                  "videoUrl": "https://www.youtube.com/watch?v=hFM9gtIzBMI",
+                  "description": "A powerfull feature in the current insiders version of VS Code is to bring your own model to the chat conversation. You can use a local running model or connect with a remote model using your own API key. Learn all about this feature from Matt Olson!",
+                  "ghes_support": true
                 }
               ]
             },
