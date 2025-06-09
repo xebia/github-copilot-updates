@@ -1,8 +1,7 @@
 {
   "scripts": {
-    "build_number": "export REACT_APP_BUILDNUMBER=$(git rev-parse --short HEAD)",
     "dev": "vite",
-    "build": "npm run build_number && vite build",
+    "build": "VITE_BUILDNUMBER=$(git rev-parse --short HEAD) vite build",
     "preview": "vite build && vite preview",
     "dupe": "node /workspaces/github-copilot-updates/.github/workflows/duplicate-ids-detection.js"
   },

@@ -24,7 +24,7 @@ export default defineConfig({
   },
   publicDir: 'public',
   define: {
-    'import.meta.env.REACT_APP_BUILDNUMBER': JSON.stringify(process.env.BUILDNUMBER) || JSON.stringify('999'),
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) || "default",
+    // MODE is automatically available in Vite
+    // VITE_BUILDNUMBER will be automatically available
   }
 });

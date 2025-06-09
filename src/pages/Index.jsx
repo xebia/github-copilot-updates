@@ -8,8 +8,8 @@ const Index = () => {
   const [feedCounts, setFeedCounts] = useState({});
   const [totalItemCount, setTotalItemCount] = useState(0);
 
-  const REACT_APP_NODE_ENV = "unknown";
-  const buildNumber = import.meta.env.REACT_APP_BUILDNUMBER || 'unknown';
+  const REACT_APP_NODE_ENV = import.meta.env.MODE || 'unknown';
+  const buildNumber = import.meta.env.VITE_BUILDNUMBER || 'unknown';
 
   useEffect(() => {
     const fetchFeeds = async () => {
