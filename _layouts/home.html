@@ -1,0 +1,46 @@
+---
+layout: default
+---
+
+<div class="home">
+  {%- if page.title -%}
+  <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+
+  {{ content }}
+
+  {%- assign date_format = "%Y-%m-%d" -%}
+
+  <div class="home-box-left">
+    <h2 class="post-list-heading">{{ page.list_title | default: "News" }}</h2>
+    <ul class="post-list">
+      {%- for news in site.news limit:10 -%}
+      <li>
+        <a href="{{ news.url | relative_url }}">
+          {{ news.date | date: date_format }} - {{ news.title | escape }}
+        </a>
+        {%- if site.show_excerpts -%}
+        {{ news.excerpt }}
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  <div class="home-box-right">
+    <h2 class="post-list-heading">{{ page.list_title | default: "Blogs" }}</h2>
+    <ul class="post-list">
+      {%- for post in site.posts -%}
+      <li>
+        <a href="{{ post.url | relative_url }}">
+          {{ post.date | date: date_format }} - {{ post.title | escape }}
+        </a>
+        {%- if site.show_excerpts -%}
+        {{ post.excerpt }}
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+
+</div>

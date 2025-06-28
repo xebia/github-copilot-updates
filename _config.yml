@@ -1,0 +1,28 @@
+title: GitHub Copilot Hub
+email: microsoft@xebia.com
+description: >-
+  Your first stop for all things GitHub Copilot. Use our resources to learn about GitHub Copilot, find the right tools, and get help with your projects or stay updated on the latest trends.
+url: "https://github-copilot.xebia.ms"
+twitter_username: Xebia
+github_username:  Xebia
+linkedin_username: Xebia
+show_excerpts: true
+author: Xebia Microsoft Services
+
+google_analytics: G-PXP313CLX6
+
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+minima:
+  date_format: "%B %-d, %Y"
+
+collections:
+  news:
+    output: true
+  videos:
+    output: true

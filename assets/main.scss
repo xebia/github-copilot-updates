@@ -1,0 +1,210 @@
+--- 
+# Only the main Sass file needs front matter (the dashes are enough)
+--- 
+
+// Override default variables for width
+$content-width: 1200px !default;
+$on-palm: 800px !default;
+$on-laptop: 1200px !default;
+
+// Custom styles
+a.page-link {
+    position: relative;
+    font-weight: 600;
+    text-decoration: none !important;
+
+    @media only screen and (min-width: 800px) {
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: rgb(131, 27, 132);
+            transition: width 0.3s ease-in-out;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+    }
+}
+
+// Special Contact button styling
+a.page-link-xebia {
+    font-size: 14px;
+    font-weight: 600;
+    background-color: rgb(131, 27, 132);
+    color: white;
+    text-decoration: none !important;
+    padding: 8px 16px 10px 16px;
+    border-radius: 15px;
+    margin-right: 9px;
+    transition: background-color 0.5s ease;
+
+    &:hover {
+        background-color: rgb(203, 46, 186);
+        color: white;
+    }
+
+    &:visited {
+        color: white;
+    }
+}
+
+.post-header {
+    margin-bottom: 0px !important;
+}
+
+.post-title {
+    font-size: 2em !important;
+    letter-spacing: unset !important;
+    line-height: unset !important;
+}
+
+.site-footer {
+    padding: 10px 0 0 0 !important;
+    color: #828282 !important;
+}
+
+.site-footer a {
+    color: #828282 !important;
+}
+
+.home-box-top {
+    width: calc(100% - 30px);
+    border: 1px solid #e8e8e8;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.home-box-left {
+    float: left;
+    width: calc(50% - 35px);
+    border: 1px solid #e8e8e8;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+@media only screen and (max-width: 800px) {
+    .home-box-left {
+        float: none;
+        width: calc(100% - 30px);
+        margin-bottom: 20px;
+    }
+}
+
+.home-box-right {
+    float: right;
+    margin-right: 8px;
+    width: calc(50% - 35px);
+    border: 1px solid #e8e8e8;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+@media only screen and (max-width: 800px) {
+    .home-box-right {
+        float: none;
+        width: calc(100% - 30px);
+    }
+}
+
+// Set default font family and background for the entire site
+body {
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background: linear-gradient(0.4turn, rgb(93, 23, 97) 0%, black 60%);
+    background-attachment: fixed;
+    color: white !important;
+    min-height: 100vh;
+}
+
+// Adjust container background and other elements for dark theme
+.site-header, .site-footer {
+    background-color: transparent;
+    border: none;
+}
+
+.site-header {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.site-header .wrapper {
+    padding-right: 10px !important;
+}
+
+.page-content {
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+}
+
+.site-footer {
+    padding-top: 20px !important;
+    padding-bottom: 10px !important;
+}
+
+.footer-col {
+    margin: 0 !important;
+}
+
+.page-content .wrapper {
+    background-color: rgba(200, 200, 200, 0.1);
+    border-radius: 15px;
+    padding: 10px 15px 20px 20px !important;
+    margin-top: 0px !important;
+}
+
+a {
+    color: white !important;
+}
+
+.highlight {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 5px;
+}
+
+.highlight {
+    color: white !important;
+}
+
+code {
+    background-color: transparent !important;
+}
+
+@media only screen and (max-width: 800px) {
+    .site-nav {
+        background-color: rgba(50, 12, 53, 0.8) !important;
+        margin-top: 10px !important;
+    }
+}
+
+.site-nav .menu-icon > svg {
+    fill: #ffffff !important;
+}
+
+.page-content a {
+    color: rgb(255, 188, 248) !important;
+    
+    &:visited {
+        color: rgb(255, 188, 248) !important;
+    }
+    
+    &:hover {
+        color: rgb(255, 127, 242) !important;
+    }
+}
+
+.post-list p {
+    font-size: small !important;
+}
+
+// Always show scrollbar to prevent layout shifts
+html {
+    overflow-y: scroll;
+    scrollbar-width: thin; // For Firefox
+}
+
+@import "minima";

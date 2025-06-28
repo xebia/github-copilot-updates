@@ -1,18 +1,18 @@
 {
-  "name": "Copilot Videos Development",
-  "image": "node:20",
+  "name": "Jekyll",
+  "image": "mcr.microsoft.com/devcontainers/jekyll",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
   "customizations": {
     "vscode": {
-      "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-      },
       "extensions": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
-      ]
+        "DavidAnson.vscode-markdownlint"
+      ],
+      "settings": {
+        "chat.agent.enabled": true,
+        "chat.mcp.enabled": true
+      }
     }
-  },
-  "forwardPorts": [5173],
-  "postCreateCommand": "npm install",
-  "remoteUser": "node"
+  }
 }

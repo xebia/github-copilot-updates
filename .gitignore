@@ -1,3 +1,8 @@
-node_modules/
-dist/
-duplicate-ids-summary.txt
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.ruby-lsp
+.bundle/
+vendor/
+Gemfile.lock
